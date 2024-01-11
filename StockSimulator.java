@@ -3,19 +3,32 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-
+import java.util.Random;
+import java.text.DecimalFormat;
 
 public class StockSimulator {
     static int day = 1;
+    static int daytotal = 5;
+    static int balance = 10000;
 
     static boolean isGooG = false;
     static boolean isAAPL = false;
     static boolean isLLY = false;
+    static int sharesOwnedLLY = 0;
+    static int sharesOwnedAAPL = 0;
+    static int sharesOwnedGooG = 0;
+
+    static double stockPriceGooG = 125.30;
+    static double stockPriceAAPL = 170.77;
+    static double stockPriceLLY = 553.93;
 
 
+
+    // double count1 = Stocks.AAPLSTK("AAPL.txt");
+    //  System.out.println(count1);
     public static void main(String[] args) throws IOException {
-        // double count1 = Stocks.AAPLSTK("AAPL.txt");
-        //  System.out.println(count1);
+
+        final DecimalFormat df = new DecimalFormat("0.00");
 
         System.out.println("Welcome to the Stock Market!");
         slowPrint("Please enter your username: ");
@@ -31,14 +44,11 @@ public class StockSimulator {
 
                         Stock Choices
                         Apple (APPL)
-                        Microsoft (MSFT)
+                        - A wide known technology company, well known for their iphones and GPU chips.
                         Google (GOOG)
-                        Amazon (AMZN)
-                        NVIDIA (NVDA)
-                        Meta (META)
-                        Berkshire Hathaway (BRK-B)
-                        Tesla (TSLA)
+                        - A company specialized in information services, used world wide.
                         Eli Lilly (LLY)
+                        - A medicine company that is a hit.
 
                         Here are the instructions to this game:\s
                         This Game has five in-game days.
@@ -47,17 +57,54 @@ public class StockSimulator {
                         You can buy and sell stocks in the stock market.
                         You will have a buying power of USD 10000
                         Each stock has different prices and can rise/fall
+                        Remember, the first day is the golden opportunity to buy stocks for your growth!!!!!!!
                         """);
-*/
+                        */
+                        slowPrint("Stock Price Simulation: \n");
+                        slowPrint("Day 1: $LLY " + df.format(stockPriceLLY) + "\n");
+                        slowPrint("Day 1: $AAPL " + df.format(stockPriceAAPL) + "\n");
+                        slowPrint("Day 1: $GooG " + df.format(stockPriceGooG) + "\n");
+
         while (day <= 5) {
             while (day <= 5) {
                 slowPrint("Would you like to skip day " + day + ", buy/sell stocks in the stock market or check your portfolio?\n" +
-                        "Enter 1 to skip the day, 2 to buy or sell, 3 to check your portfolio: ");
+                        "Enter 1 to skip the day, 2 to buy or sell, 3 to check your portfolio:  \n ");
                 Scanner scanner2 = new Scanner(System.in);
                 String option = scanner2.nextLine();
 
                 if (option.equals("1")) {
                     day++;
+                    for (int day = 2; day <= daytotal; day++) {
+                        Random random = new Random();
+                        // only 2 decimal place
+
+                        double randomFactor = 0.05 + random.nextDouble() * 0.0001;
+                        // random factor for price change
+                        boolean isIncrease = random.nextBoolean();
+                        // randomly determine if the price will increase or decrease
+                        boolean isIncrease2 = random.nextBoolean();
+                        boolean isIncrease3 = random.nextBoolean();
+
+                        if (isIncrease) {
+                            stockPriceLLY *= (0.993 + randomFactor);
+                        } else {
+                            stockPriceLLY *= (1.001 - randomFactor);
+                        }
+                        if (isIncrease2) {
+                            stockPriceAAPL *= (0.989 + randomFactor);
+                        } else {
+                            stockPriceAAPL *= (0.999 - randomFactor);
+                        }
+                        if (isIncrease3) {
+                            stockPriceGooG *= (0.96 + randomFactor);
+                        } else {
+                            stockPriceGooG *= (1.01 - randomFactor);
+                        }
+                        slowPrint(" $LLY: " + df.format(stockPriceLLY) + "\n");
+                        slowPrint(" $AAPL: " + df.format(stockPriceAAPL) + "\n");
+                        slowPrint(" $GooG: " + df.format(stockPriceGooG) + "\n");
+                    }
+
                 } else if (option.equals("2")) {
                     buyOrSellStock();
                 } else if (option.equals("3")){
@@ -73,7 +120,11 @@ public class StockSimulator {
             slowPrint("You have reached day 6, the end of this simulator... Here is your final portfolio.\n");
             Portfolio();
         }
+
     }
+
+
+
 
 
     public static void buyOrSellStock() {
@@ -111,19 +162,41 @@ public class StockSimulator {
     }
 
     public static int Portfolio() {
-        int balance = 10000;
         System.out.println("Portfolio Balance: $" + balance);
-        if(isAAPL){
-            slowPrint("AAPLE is in holding");
-        }else if(isLLY){
-            slowPrint("AAPLE is in holding");
+        if(isAAPL && isLLY && isGooG){
+            slowPrint("AAPLE, GOOGLE and ELILILLY are in holding\n");
+            slowPrint("AAPL: " + sharesOwnedAAPL + ", GOOGLE: " + sharesOwnedGooG + " and LLY: " + sharesOwnedLLY + "\n");
         }
-
+        else if(isAAPL && isLLY){
+            slowPrint("AAPLE and ELILILLY are in holding\n");
+            slowPrint("AAPL: " + sharesOwnedAAPL + " and LLY: " + sharesOwnedLLY + "\n");
+        }
+        else if(isLLY && isGooG){
+            slowPrint("GOOGLE and ELILILLY are in holding\n");
+            slowPrint("GOOG: " + sharesOwnedGooG + " and LLY: " + sharesOwnedLLY + "\n");
+        }
+        else if (isGooG && isAAPL){
+            slowPrint("GOOGLE and AAPLE are in holding\n");
+            slowPrint("GOOG: " + sharesOwnedGooG + " and AAPL: " + sharesOwnedAAPL + "\n");
+        }
+        else if(isAAPL){
+            slowPrint("AAPLE is in holding\n");
+            slowPrint("AAPL: " + sharesOwnedAAPL + "\n");
+        }
+        else if(isLLY){
+            slowPrint("ELILILLY is in holding\n");
+            slowPrint("LLY: " + sharesOwnedLLY + "\n");
+        }
+        else if (isGooG){
+            slowPrint("GOOGLE is in holding\n");
+            slowPrint("GOOG: " + sharesOwnedGooG + "\n");
+        }
         return balance;
 
     }
 
-/*    public static String[] Portfolio2() {
+/*   Attempt:
+        public static String[] Portfolio2() {
         String[] stocks = {""};
         final int[] sharesOwnedLLY = {0};
         int sharesOwnedAAPL = 0;
@@ -142,33 +215,30 @@ public class StockSimulator {
     }  */
 
     static class StockCallMethods {
-        static int balance = 10000;
+
         // call method for elililly
 
         public static void callEliLilly() {
-            int CurrentBalance = Portfolio();
+            int CurrentBalance = balance;
 
-            double stockPrice = 170.77;
+            System.out.println("Calling EliLilly (LLY) stock method with price: " + stockPriceLLY);
 
-            int sharesOwnedLLY = 0;
-            System.out.println("Calling Apple (AAPL) stock method with price: " + stockPrice);
-
-            if (CurrentBalance >= stockPrice) {
+            if (CurrentBalance >= stockPriceLLY) {
                 // Buy shares
-                int sharesToBuy = (int) (CurrentBalance / stockPrice);
+                int sharesToBuy = (int) (CurrentBalance / stockPriceLLY);
                 slowPrint("you can buy " + sharesToBuy + " shares\n");
 
                 slowPrint("Enter a valid number to buy that amount of shares\n");
                 Scanner scanner4 = new Scanner(System.in);
-                int number = Integer.parseInt(scanner4.nextLine());
+                int number = Integer.valueOf(scanner4.nextLine());
 
 
                 if(sharesToBuy >= number){
                     sharesOwnedLLY += number;
-                    CurrentBalance -= number * stockPrice;
-                    balance = (int) (balance - (number * stockPrice));
-                    System.out.println("Bought " + number + " shares of LLY at price " + stockPrice);
-                    boolean isLLY = true;
+                    CurrentBalance -= number * stockPriceLLY;
+                    balance = (int) (balance - (number * stockPriceLLY));
+                    System.out.println("Bought " + number + " shares of LLY at price " + stockPriceLLY);
+                    isLLY = true;
 
                 } else {
                     slowPrint("Failed to buy " + number + " shares of LLY due to insufficient balance");
@@ -179,10 +249,11 @@ public class StockSimulator {
 
                 slowPrint("Enter a valid number to sell that amount of shares");
                 Scanner scanner4 = new Scanner(System.in);
-                int number = Integer.parseInt(scanner4.nextLine());
-                CurrentBalance += number * stockPrice;
+                int number = Integer.valueOf(scanner4.nextLine());
+                CurrentBalance += number * stockPriceLLY;
                 sharesOwnedLLY -= number;
-                System.out.println("Sold all shares of LLY at price " + stockPrice);
+                System.out.println("Sold all shares of LLY at price " + stockPriceLLY);
+                isLLY = false;
             }
 
             int finalBalance = CurrentBalance;
@@ -196,29 +267,28 @@ public class StockSimulator {
         // call method for apple
 
         public static void callApple() {
-            int CurrentBalance = Portfolio();
+            int CurrentBalance = balance;
 
-            double stockPrice = 170.77;
 
-            int sharesOwnedAAPL = 0;
-            System.out.println("Calling Apple (AAPL) stock method with price: " + stockPrice);
 
-            if (CurrentBalance >= stockPrice) {
+            System.out.println("Calling Apple (AAPL) stock method with price: " + stockPriceAAPL );
+
+            if (CurrentBalance >= stockPriceAAPL) {
                 // buy shares
-                int sharesToBuy = (int) (CurrentBalance / stockPrice);
+                int sharesToBuy = (int) (CurrentBalance / stockPriceAAPL);
                 slowPrint("you can buy " + sharesToBuy + " shares\n");
 
                 slowPrint("Enter a valid number to buy that amount of shares\n");
                 Scanner scanner4 = new Scanner(System.in);
-                int number = Integer.parseInt(scanner4.nextLine());
+                int number = Integer.valueOf(scanner4.nextLine());
 
 
                 if(sharesToBuy >= number){
                     sharesOwnedAAPL += number;
-                    CurrentBalance -= number * stockPrice;
-                    balance = (int) (balance - (number * stockPrice));
-                    System.out.println("Bought " + number + " shares of AAPL at price " + stockPrice);
-                    boolean isAAPL = true;
+                    CurrentBalance -= number * stockPriceAAPL;
+                    balance = (int) (balance - (number * stockPriceAAPL));
+                    System.out.println("Bought " + number + " shares of AAPL at price " + stockPriceAAPL);
+                    isAAPL = true;
                 } else {
                     slowPrint("Failed to buy " + number + " shares of AAPL due to insufficient balance");
                 }
@@ -230,11 +300,12 @@ public class StockSimulator {
 
                 slowPrint("Enter a valid number to sell that amount of shares");
                 Scanner scanner4 = new Scanner(System.in);
-                int number = Integer.parseInt(scanner4.nextLine());
+                int number = Integer.valueOf(scanner4.nextLine());
 
-                CurrentBalance += number * stockPrice;
+                CurrentBalance += number * stockPriceAAPL;
                 sharesOwnedAAPL -= number;
-                System.out.println("Sold all shares of GOOG at price " + stockPrice);
+                System.out.println("Sold all shares of GOOG at price " + stockPriceAAPL);
+                isAAPL = false;
             }
 
             int finalBalance = CurrentBalance;
@@ -248,29 +319,25 @@ public class StockSimulator {
 
         // call feature for Google
         public static void callGoogle() {
-            int CurrentBalance = Portfolio();
+            int CurrentBalance = balance;
 
+            System.out.println("Calling Google (GOOG) stock method with price: " + stockPriceGooG);
 
-            int sharesOwnedGooG = 0;
-            double stockPrice = 125.30;
-
-            System.out.println("Calling Google (GOOG) stock method with price: " + stockPrice);
-
-            if (CurrentBalance >= stockPrice) {
+            if (CurrentBalance >= stockPriceGooG) {
                 // buy shares
-                int sharesToBuy = (int) (CurrentBalance / stockPrice);
+                int sharesToBuy = (int) (CurrentBalance / stockPriceGooG);
                 slowPrint("you can buy " + sharesToBuy + " shares\n");
 
                 slowPrint("Enter a valid number to buy that amount of shares");
                 Scanner scanner4 = new Scanner(System.in);
-                int number = Integer.parseInt(scanner4.nextLine());
+                int number = Integer.valueOf(scanner4.nextLine());
 
                 if(sharesToBuy >= number){
                     sharesOwnedGooG += number;
-                    CurrentBalance -= number * stockPrice;
-                    balance = (int) (balance - (number * stockPrice));
-                    System.out.println("Bought " + number + " shares of GOOG at price " + stockPrice);
-
+                    CurrentBalance -= number * stockPriceGooG;
+                    balance = (int) (balance - (number * stockPriceGooG));
+                    System.out.println("Bought " + number + " shares of GOOG at price " + stockPriceGooG);
+                    isGooG = true;
                 } else {
                     slowPrint("Failed to buy " + number + " shares of GOOG due to insufficient balance");
                 }
@@ -281,11 +348,11 @@ public class StockSimulator {
 
                 slowPrint("Enter a valid number to sell that amount of shares");
                 Scanner scanner4 = new Scanner(System.in);
-                int number = Integer.parseInt(scanner4.nextLine());
-                boolean isGooG = true;
-                CurrentBalance += number * stockPrice;
+                int number = Integer.valueOf(scanner4.nextLine());
+                CurrentBalance += number * stockPriceGooG;
                 sharesOwnedGooG -= number;
-                System.out.println("Sold all shares of GOOG at price " + stockPrice);
+                System.out.println("Sold all shares of GOOG at price " + stockPriceGooG);
+                isGooG = false;
             }
 
             int finalBalance = CurrentBalance;
@@ -293,6 +360,8 @@ public class StockSimulator {
 
 
         }
+
+        
 
         public static int[] readFile(String fileName) {
             return new int[0];
