@@ -14,13 +14,16 @@ public class StockSimulator {
     static boolean isGooG = false;
     static boolean isAAPL = false;
     static boolean isLLY = false;
+    static boolean isTSLA = false;
     static int sharesOwnedLLY = 0;
     static int sharesOwnedAAPL = 0;
     static int sharesOwnedGooG = 0;
+    static int sharesOwnedTSLA = 0;
 
     static double stockPriceGooG = 125.30;
     static double stockPriceAAPL = 170.77;
     static double stockPriceLLY = 553.93;
+    static double stockPriceTSLA = 200.84;
 
 
 
@@ -35,7 +38,7 @@ public class StockSimulator {
         Scanner scanner = new Scanner(System.in);
         String Name = scanner.nextLine();
         System.out.println("Dear " + Name + ", Here are the rules to this game\n");
-     /*   slowPrint(
+        slowPrint(
                 """
                         Objectives
                         A) Earn as much as possible using your money ($10000)
@@ -49,21 +52,23 @@ public class StockSimulator {
                         - A company specialized in information services, used world wide.
                         Eli Lilly (LLY)
                         - A medicine company that is a hit.
+                        Tesla (TSLA)
+                        - A revolutionary company that is well known for their EVS, and they are rapidly expanding their empire of cars. 
 
                         Here are the instructions to this game:\s
                         This Game has five in-game days.
-                        Make sure to maximize your profit
-                        Make sure to check the data given every day
+                        Make sure to maximize your profit!!!
                         You can buy and sell stocks in the stock market.
                         You will have a buying power of USD 10000
                         Each stock has different prices and can rise/fall
                         Remember, the first day is the golden opportunity to buy stocks for your growth!!!!!!!
                         """);
-                        */
+
                         slowPrint("Stock Price Simulation: \n");
                         slowPrint("Day 1: $LLY " + df.format(stockPriceLLY) + "\n");
                         slowPrint("Day 1: $AAPL " + df.format(stockPriceAAPL) + "\n");
                         slowPrint("Day 1: $GooG " + df.format(stockPriceGooG) + "\n");
+                        slowPrint("Day 1: $TSLA " + df.format(stockPriceTSLA) + "\n");
 
         while (day <= 5) {
             while (day <= 5) {
@@ -100,9 +105,15 @@ public class StockSimulator {
                         } else {
                             stockPriceGooG *= (1.01 - randomFactor);
                         }
+                        if (isIncrease3) {
+                            stockPriceTSLA *= (1.03 + randomFactor);
+                        } else {
+                            stockPriceTSLA *= (1.01 - randomFactor);
+                        }
                         slowPrint(" $LLY: " + df.format(stockPriceLLY) + "\n");
                         slowPrint(" $AAPL: " + df.format(stockPriceAAPL) + "\n");
                         slowPrint(" $GooG: " + df.format(stockPriceGooG) + "\n");
+                        slowPrint(" $TSLA: " + df.format(stockPriceTSLA) + "\n");
                     }
 
                 } else if (option.equals("2")) {
@@ -119,6 +130,10 @@ public class StockSimulator {
         if (day == 6) {
             slowPrint("You have reached day 6, the end of this simulator... Here is your final portfolio.\n");
             Portfolio();
+            slowPrint("\" \n and here is the Total Balance including current stock price (to many decimal places):\" ");
+            slowPrint((String.valueOf( balance + stockPriceGooG*sharesOwnedGooG + stockPriceAAPL*sharesOwnedAAPL + stockPriceLLY*sharesOwnedLLY + stockPriceTSLA*sharesOwnedTSLA)));
+
+
         }
 
     }
@@ -131,7 +146,7 @@ public class StockSimulator {
         slowPrint("""
                 Which stock would you like to buy or sell?
 
-                Enter 1 for Eli Lilly (LLY), 2 for Apple (AAPL), or 3 for Google (GOOG):\s""");
+                Enter 1 for Eli Lilly (LLY), 2 for Apple (AAPL), 3 for Google (GOOG) or 4 for Tesla (TSLA):\s""");
         Scanner scanner = new Scanner(System.in);
         String stockChoice = scanner.nextLine();
 
@@ -144,6 +159,9 @@ public class StockSimulator {
                 break;
             case "3":
                 StockCallMethods.callGoogle();
+                break;
+            case "4":
+                StockCallMethods.callTesla();
                 break;
             default:
                 slowPrint("Invalid choice. Please try again.\n");
@@ -163,33 +181,21 @@ public class StockSimulator {
 
     public static int Portfolio() {
         System.out.println("Portfolio Balance: $" + balance);
-        if(isAAPL && isLLY && isGooG){
-            slowPrint("AAPLE, GOOGLE and ELILILLY are in holding\n");
-            slowPrint("AAPL: " + sharesOwnedAAPL + ", GOOGLE: " + sharesOwnedGooG + " and LLY: " + sharesOwnedLLY + "\n");
-        }
-        else if(isAAPL && isLLY){
-            slowPrint("AAPLE and ELILILLY are in holding\n");
-            slowPrint("AAPL: " + sharesOwnedAAPL + " and LLY: " + sharesOwnedLLY + "\n");
-        }
-        else if(isLLY && isGooG){
-            slowPrint("GOOGLE and ELILILLY are in holding\n");
-            slowPrint("GOOG: " + sharesOwnedGooG + " and LLY: " + sharesOwnedLLY + "\n");
-        }
-        else if (isGooG && isAAPL){
-            slowPrint("GOOGLE and AAPLE are in holding\n");
-            slowPrint("GOOG: " + sharesOwnedGooG + " and AAPL: " + sharesOwnedAAPL + "\n");
-        }
-        else if(isAAPL){
+        if(isAAPL){
             slowPrint("AAPLE is in holding\n");
             slowPrint("AAPL: " + sharesOwnedAAPL + "\n");
         }
-        else if(isLLY){
+        if(isLLY){
             slowPrint("ELILILLY is in holding\n");
             slowPrint("LLY: " + sharesOwnedLLY + "\n");
         }
-        else if (isGooG){
+        if (isGooG){
             slowPrint("GOOGLE is in holding\n");
             slowPrint("GOOG: " + sharesOwnedGooG + "\n");
+        }
+        if(isTSLA){
+            slowPrint("TESLA is in holding\n");
+            slowPrint("TSLA: " + sharesOwnedTSLA + "\n");
         }
         return balance;
 
@@ -253,7 +259,7 @@ public class StockSimulator {
                 CurrentBalance += number * stockPriceLLY;
                 sharesOwnedLLY -= number;
                 System.out.println("Sold all shares of LLY at price " + stockPriceLLY);
-                isLLY = false;
+                if(sharesOwnedLLY == 0)isLLY = false;
             }
 
             int finalBalance = CurrentBalance;
@@ -305,7 +311,7 @@ public class StockSimulator {
                 CurrentBalance += number * stockPriceAAPL;
                 sharesOwnedAAPL -= number;
                 System.out.println("Sold all shares of GOOG at price " + stockPriceAAPL);
-                isAAPL = false;
+                if(sharesOwnedAAPL == 0)isAAPL = false;
             }
 
             int finalBalance = CurrentBalance;
@@ -352,7 +358,7 @@ public class StockSimulator {
                 CurrentBalance += number * stockPriceGooG;
                 sharesOwnedGooG -= number;
                 System.out.println("Sold all shares of GOOG at price " + stockPriceGooG);
-                isGooG = false;
+                if(sharesOwnedGooG == 0) isGooG = false;
             }
 
             int finalBalance = CurrentBalance;
@@ -361,7 +367,48 @@ public class StockSimulator {
 
         }
 
-        
+        public static void callTesla() {
+            int CurrentBalance = balance;
+
+            System.out.println("Calling Tesla (TSLA) stock method with price: " + stockPriceTSLA);
+
+            if (CurrentBalance >= stockPriceTSLA) {
+                // buy shares
+                int sharesToBuy = (int) (CurrentBalance / stockPriceTSLA);
+                slowPrint("you can buy " + sharesToBuy + " shares\n");
+
+                slowPrint("Enter a valid number to buy that amount of shares");
+                Scanner scanner4 = new Scanner(System.in);
+                int number = Integer.valueOf(scanner4.nextLine());
+
+                if(sharesToBuy >= number){
+                    sharesOwnedTSLA += number;
+                    CurrentBalance -= number * stockPriceTSLA;
+                    balance = (int) (balance - (number * stockPriceTSLA));
+                    System.out.println("Bought " + number + " shares of TSLA at price " + stockPriceTSLA);
+                    isTSLA = true;
+                } else {
+                    slowPrint("Failed to buy " + number + " shares of TSLA due to insufficient balance");
+                }
+
+            } else if (sharesOwnedTSLA > 0) {
+                // sell shares
+                int sellAmount = sharesOwnedTSLA;
+
+                slowPrint("Enter a valid number to sell that amount of shares");
+                Scanner scanner4 = new Scanner(System.in);
+                int number = Integer.valueOf(scanner4.nextLine());
+                CurrentBalance += number * stockPriceTSLA;
+                sharesOwnedTSLA -= number;
+                System.out.println("Sold all shares of TSLA at price " + stockPriceTSLA);
+                if(sharesOwnedTSLA == 0) isTSLA = false;
+            }
+
+            int finalBalance = CurrentBalance;
+            System.out.println("Final balance: " + finalBalance);
+
+
+        }
 
         public static int[] readFile(String fileName) {
             return new int[0];
