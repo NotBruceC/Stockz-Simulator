@@ -200,25 +200,6 @@ public class StockSimulator {
 
     }
 
-/*   Attempt:
-        public static String[] Portfolio2() {
-        String[] stocks = {""};
-        final int[] sharesOwnedLLY = {0};
-        int sharesOwnedAAPL = 0;
-        int sharesOwnedGooG = 0;
-        if (sharesOwnedGooG >= 1) {
-            stocks = new String[]{stocks + "GooG"};
-        }
-        if (sharesOwnedLLY[0] >= 1) {
-            stocks = new String[]{stocks + "LLY"};
-        }
-        if (sharesOwnedAAPL >= 1) {
-            stocks = new String[]{stocks + "AAPL"};
-        }
-        System.out.println("Stocks in Portfolio: " + Arrays.toString(stocks));
-        return stocks;
-    }  */
-
     static class StockCallMethods {
 
         // call method for elililly
@@ -238,7 +219,7 @@ public class StockSimulator {
                 int number = Integer.valueOf(scanner4.nextLine());
 
 
-                if(sharesToBuy >= number){
+                if (sharesToBuy >= number) {
                     sharesOwnedLLY += number;
                     CurrentBalance -= number * stockPriceLLY;
                     balance = (int) (balance - (number * stockPriceLLY));
@@ -258,7 +239,7 @@ public class StockSimulator {
                 CurrentBalance += number * stockPriceLLY;
                 sharesOwnedLLY -= number;
                 System.out.println("Sold all shares of LLY at price " + stockPriceLLY);
-                if(sharesOwnedLLY == 0)isLLY = false;
+                if (sharesOwnedLLY == 0) isLLY = false;
             }
 
             int finalBalance = CurrentBalance;
@@ -275,8 +256,7 @@ public class StockSimulator {
             int CurrentBalance = balance;
 
 
-
-            System.out.println("Calling Apple (AAPL) stock method with price: " + stockPriceAAPL );
+            System.out.println("Calling Apple (AAPL) stock method with price: " + stockPriceAAPL);
 
             if (CurrentBalance >= stockPriceAAPL) {
                 // buy shares
@@ -288,7 +268,7 @@ public class StockSimulator {
                 int number = Integer.valueOf(scanner4.nextLine());
 
 
-                if(sharesToBuy >= number){
+                if (sharesToBuy >= number) {
                     sharesOwnedAAPL += number;
                     CurrentBalance -= number * stockPriceAAPL;
                     balance = (int) (balance - (number * stockPriceAAPL));
@@ -310,14 +290,13 @@ public class StockSimulator {
                 CurrentBalance += number * stockPriceAAPL;
                 sharesOwnedAAPL -= number;
                 System.out.println("Sold all shares of GOOG at price " + stockPriceAAPL);
-                if(sharesOwnedAAPL == 0)isAAPL = false;
+                if (sharesOwnedAAPL == 0) isAAPL = false;
             }
 
             int finalBalance = CurrentBalance;
             System.out.println("Final balance: " + finalBalance);
             int profit = finalBalance - CurrentBalance;
             System.out.println("Profit: " + profit);
-
 
 
         }
@@ -337,7 +316,7 @@ public class StockSimulator {
                 Scanner scanner4 = new Scanner(System.in);
                 int number = Integer.valueOf(scanner4.nextLine());
 
-                if(sharesToBuy >= number){
+                if (sharesToBuy >= number) {
                     sharesOwnedGooG += number;
                     CurrentBalance -= number * stockPriceGooG;
                     balance = (int) (balance - (number * stockPriceGooG));
@@ -357,7 +336,7 @@ public class StockSimulator {
                 CurrentBalance += number * stockPriceGooG;
                 sharesOwnedGooG -= number;
                 System.out.println("Sold all shares of GOOG at price " + stockPriceGooG);
-                if(sharesOwnedGooG == 0) isGooG = false;
+                if (sharesOwnedGooG == 0) isGooG = false;
             }
 
             int finalBalance = CurrentBalance;
@@ -380,7 +359,7 @@ public class StockSimulator {
                 Scanner scanner4 = new Scanner(System.in);
                 int number = Integer.valueOf(scanner4.nextLine());
 
-                if(sharesToBuy >= number){
+                if (sharesToBuy >= number) {
                     sharesOwnedTSLA += number;
                     CurrentBalance -= number * stockPriceTSLA;
                     balance = (int) (balance - (number * stockPriceTSLA));
@@ -400,7 +379,7 @@ public class StockSimulator {
                 CurrentBalance += number * stockPriceTSLA;
                 sharesOwnedTSLA -= number;
                 System.out.println("Sold all shares of TSLA at price " + stockPriceTSLA);
-                if(sharesOwnedTSLA == 0) isTSLA = false;
+                if (sharesOwnedTSLA == 0) isTSLA = false;
             }
 
             int finalBalance = CurrentBalance;
@@ -408,55 +387,6 @@ public class StockSimulator {
 
 
         }
-
-        public static int[] readFile(String fileName) {
-            return new int[0];
-        }
     }
-        // Other methods that are not implemented or required
-        // experimental features
-
-
-        private static void writeFileAllAnswers(String outPutFilename, int AAPLSTK) throws IOException {
-            File file = new File(outPutFilename);
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-            bufferedWriter.write("Apple Stock: " + "\t" + AAPLSTK + "\n");
-            bufferedWriter.close();
-        }
-
-        public static int[] readFile(String inputFilename) throws FileNotFoundException {
-            File file = new File(inputFilename);
-            Scanner scanner = new Scanner(file);
-            int numberOfLinesInFile = countLinesInFile(inputFilename);
-            int[] data = new int[numberOfLinesInFile];
-            int index = 0;
-            while (scanner.hasNextLine()) {
-                data[index++] = scanner.nextInt();
-            }
-            scanner.close();
-            return data;
-        }
-
-
-        /**
-         * This method will count the number of lines in a text file, which it will return.
-         * Do not edit this method.
-         */
-       private static int countLinesInFile(String inputFilename) throws FileNotFoundException {
-            File file = new File(inputFilename);
-           Scanner scanner = null;
-           try {
-               scanner = new Scanner(file);
-           } catch (FileNotFoundException e) {
-               throw new RuntimeException(e);
-           }
-           int lineCount = 0;
-            while (scanner.hasNextLine()) {
-                lineCount++;
-                scanner.nextLine();
-            }
-            scanner.close();
-            return lineCount;
-        }
-    }
+}
 
