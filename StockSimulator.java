@@ -243,6 +243,7 @@ public class StockSimulator {
             }
 
             int finalBalance = CurrentBalance;
+            balance = finalBalance;
             System.out.println("Final balance: " + finalBalance);
             int profit = finalBalance - CurrentBalance;
             System.out.println("Profit: " + profit);
@@ -294,6 +295,7 @@ public class StockSimulator {
             }
 
             int finalBalance = CurrentBalance;
+            balance = finalBalance;
             System.out.println("Final balance: " + finalBalance);
             int profit = finalBalance - CurrentBalance;
             System.out.println("Profit: " + profit);
@@ -340,7 +342,10 @@ public class StockSimulator {
             }
 
             int finalBalance = CurrentBalance;
+            balance = finalBalance;
             System.out.println("Final balance: " + finalBalance);
+            int profit = finalBalance - CurrentBalance;
+            System.out.println("Profit: " + profit);
 
 
         }
@@ -383,8 +388,10 @@ public class StockSimulator {
             }
 
             int finalBalance = CurrentBalance;
+            balance = finalBalance;
             System.out.println("Final balance: " + finalBalance);
-
+            int profit = finalBalance - CurrentBalance;
+            System.out.println("Profit: " + profit);
 
         }
     }

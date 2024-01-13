@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e288d77-7dca-497b-9e54-9d6bfb712159" name="Changes" comment="Comet">
+    <list default="true" id="3e288d77-7dca-497b-9e54-9d6bfb712159" name="Changes" comment="gmail">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StockSimulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/StockSimulator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Stock Simulator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Stock Simulator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Stock Simulator/StockSimulator$StockCallMethods.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Stock Simulator/StockSimulator$StockCallMethods.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Stock Simulator/StockSimulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Stock Simulator/StockSimulator.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +22,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -89,13 +89,40 @@
       <option name="project" value="LOCAL" />
       <updated>1704951874613</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Bob the builder">
+      <option name="closed" value="true" />
+      <created>1705037816703</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1705037816703</updated>
+    </task>
+    <task id="LOCAL-00005" summary="asymptopic">
+      <option name="closed" value="true" />
+      <created>1705037913631</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1705037913631</updated>
+    </task>
+    <task id="LOCAL-00006" summary="gmail">
+      <option name="closed" value="true" />
+      <created>1705037977936</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1705037977936</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="comit" />
     <MESSAGE value="Comet" />
-    <option name="LAST_COMMIT_MESSAGE" value="Comet" />
+    <MESSAGE value="Bob the builder" />
+    <MESSAGE value="asymptopic" />
+    <MESSAGE value="gmail" />
+    <option name="LAST_COMMIT_MESSAGE" value="gmail" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
