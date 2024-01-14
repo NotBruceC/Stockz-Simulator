@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e288d77-7dca-497b-9e54-9d6bfb712159" name="Changes" comment="gmail">
+    <list default="true" id="3e288d77-7dca-497b-9e54-9d6bfb712159" name="Changes" comment="dji">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StockSimulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/StockSimulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Stock Simulator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Stock Simulator/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Stock Simulator/StockSimulator$StockCallMethods.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Stock Simulator/StockSimulator$StockCallMethods.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Stock Simulator/StockSimulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Stock Simulator/StockSimulator.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +116,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705037977936</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="dji">
+      <option name="closed" value="true" />
+      <created>1705112545805</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1705112545805</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -122,7 +133,8 @@
     <MESSAGE value="Bob the builder" />
     <MESSAGE value="asymptopic" />
     <MESSAGE value="gmail" />
-    <option name="LAST_COMMIT_MESSAGE" value="gmail" />
+    <MESSAGE value="dji" />
+    <option name="LAST_COMMIT_MESSAGE" value="dji" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -6,140 +6,140 @@ import java.util.Random;
 import java.text.DecimalFormat;
 
 public class StockSimulator {
+    // stats
     static int day = 1;
     static int daytotal = 5;
     static int balance = 10000;
-
+// boolean
     static boolean isGooG = false;
     static boolean isAAPL = false;
     static boolean isLLY = false;
     static boolean isTSLA = false;
+    // portfolio
     static int sharesOwnedLLY = 0;
     static int sharesOwnedAAPL = 0;
     static int sharesOwnedGooG = 0;
     static int sharesOwnedTSLA = 0;
-
+// changable prices
     static double stockPriceGooG = 125.30;
     static double stockPriceAAPL = 170.77;
     static double stockPriceLLY = 553.93;
     static double stockPriceTSLA = 200.84;
 
-
-
-    // double count1 = Stocks.AAPLSTK("AAPL.txt");
-    //  System.out.println(count1);
+    // main method
     public static void main(String[] args) throws IOException {
 
         final DecimalFormat df = new DecimalFormat("0.00");
+        Scanner scanner5 = new Scanner(System.in);
+        String playAgain = null;
+        do {
+            System.out.println("Welcome to the Stock Market!");
+            slowPrint("Please enter your username: ");
+            Scanner scanner = new Scanner(System.in);
+            String Name = scanner.nextLine();
+            System.out.println("Dear " + Name + ", Here are the rules to this game\n");
+            slowPrint(
+                    """
+                            Objectives
+                            A) Earn as much as possible using your money ($10000)
+                            B) Buy the best stocks possible in the market
+                            C) Have fun\s
 
-        System.out.println("Welcome to the Stock Market!");
-        slowPrint("Please enter your username: ");
-        Scanner scanner = new Scanner(System.in);
-        String Name = scanner.nextLine();
-        System.out.println("Dear " + Name + ", Here are the rules to this game\n");
-        slowPrint(
-                """
-                        Objectives
-                        A) Earn as much as possible using your money ($10000)
-                        B) Buy the best stocks possible in the market
-                        C) Have fun\s
+                            Stock Choices
+                            Apple (APPL)
+                            - A wide known technology company, well known for their iphones and GPU chips.
+                            Google (GOOG)
+                            - A company specialized in information services, used world wide.
+                            Eli Lilly (LLY)
+                            - A medicine company that is a hit.
+                            Tesla (TSLA)
+                            - A revolutionary company that is well known for their EVS, and they are rapidly expanding their empire of cars. 
 
-                        Stock Choices
-                        Apple (APPL)
-                        - A wide known technology company, well known for their iphones and GPU chips.
-                        Google (GOOG)
-                        - A company specialized in information services, used world wide.
-                        Eli Lilly (LLY)
-                        - A medicine company that is a hit.
-                        Tesla (TSLA)
-                        - A revolutionary company that is well known for their EVS, and they are rapidly expanding their empire of cars. 
+                            Here are the instructions to this game:\s
+                            This Game has five in-game days.
+                            Make sure to maximize your profit!!!
+                            You can buy and sell stocks in the stock market.
+                            You will have a buying power of USD 10000
+                            Each stock has different prices and can rise/fall
+                            Remember, the first day is the golden opportunity to buy stocks for your growth!!!!!!!
+                            """);
 
-                        Here are the instructions to this game:\s
-                        This Game has five in-game days.
-                        Make sure to maximize your profit!!!
-                        You can buy and sell stocks in the stock market.
-                        You will have a buying power of USD 10000
-                        Each stock has different prices and can rise/fall
-                        Remember, the first day is the golden opportunity to buy stocks for your growth!!!!!!!
-                        """);
+            // shows price of day one (orginal price)
+            slowPrint("Stock Price Simulation: \n");
+            slowPrint("Day 1: $LLY " + df.format(stockPriceLLY) + "\n");
+            slowPrint("Day 1: $AAPL " + df.format(stockPriceAAPL) + "\n");
+            slowPrint("Day 1: $GooG " + df.format(stockPriceGooG) + "\n");
+            slowPrint("Day 1: $TSLA " + df.format(stockPriceTSLA) + "\n");
 
-                        slowPrint("Stock Price Simulation: \n");
-                        slowPrint("Day 1: $LLY " + df.format(stockPriceLLY) + "\n");
-                        slowPrint("Day 1: $AAPL " + df.format(stockPriceAAPL) + "\n");
-                        slowPrint("Day 1: $GooG " + df.format(stockPriceGooG) + "\n");
-                        slowPrint("Day 1: $TSLA " + df.format(stockPriceTSLA) + "\n");
-
-        while (day <= 5) {
             while (day <= 5) {
-                slowPrint("Would you like to skip day " + day + ", buy/sell stocks in the stock market or check your portfolio?\n" +
-                        "Enter 1 to skip the day, 2 to buy or sell, 3 to check your portfolio:  \n ");
-                Scanner scanner2 = new Scanner(System.in);
-                String option = scanner2.nextLine();
+                while (day <= 5) {
+                    slowPrint("Would you like to skip day " + day + ", buy/sell stocks in the stock market or check your portfolio?\n" +
+                            "Enter 1 to skip the day, 2 to buy or sell, 3 to check your portfolio:  \n ");
+                    Scanner scanner2 = new Scanner(System.in);
+                    String option = scanner2.nextLine();
 
-                if (option.equals("1")) {
-                    day++;
-                    for (int day = 2; day <= daytotal; day++) {
-                        Random random = new Random();
-                        // only 2 decimal place
+                    if (option.equals("1")) {
+                        day++;
+                        for (int day = 2; day <= daytotal; day++) {
+                            Random random = new Random();
+                            // only 2 decimal place
 
-                        double randomFactor = 0.05 + random.nextDouble() * 0.0001;
-                        // random factor for price change
-                        boolean isIncrease = random.nextBoolean();
-                        // randomly determine if the price will increase or decrease
-                        boolean isIncrease2 = random.nextBoolean();
-                        boolean isIncrease3 = random.nextBoolean();
+                            double randomFactor = 0.05 + random.nextDouble() * 0.0001;
+                            // random factor for price change
+                            boolean isIncrease = random.nextBoolean();
+                            // randomly determine if the price will increase or decrease
+                            boolean isIncrease2 = random.nextBoolean();
+                            boolean isIncrease3 = random.nextBoolean();
 
-                        if (isIncrease) {
-                            stockPriceLLY *= (0.993 + randomFactor);
-                        } else {
-                            stockPriceLLY *= (1.001 - randomFactor);
+                            if (isIncrease) {
+                                stockPriceLLY *= (0.993 + randomFactor);
+                            } else {
+                                stockPriceLLY *= (1.001 - randomFactor);
+                            }
+                            if (isIncrease2) {
+                                stockPriceAAPL *= (0.989 + randomFactor);
+                            } else {
+                                stockPriceAAPL *= (0.999 - randomFactor);
+                            }
+                            if (isIncrease3) {
+                                stockPriceGooG *= (0.96 + randomFactor);
+                            } else {
+                                stockPriceGooG *= (1.01 - randomFactor);
+                            }
+                            if (isIncrease3) {
+                                stockPriceTSLA *= (1.03 + randomFactor);
+                            } else {
+                                stockPriceTSLA *= (1.01 - randomFactor);
+                            }
+                            slowPrint(" $LLY: " + df.format(stockPriceLLY) + "\n");
+                            slowPrint(" $AAPL: " + df.format(stockPriceAAPL) + "\n");
+                            slowPrint(" $GooG: " + df.format(stockPriceGooG) + "\n");
+                            slowPrint(" $TSLA: " + df.format(stockPriceTSLA) + "\n");
+                            // slowPrint("") the price change
                         }
-                        if (isIncrease2) {
-                            stockPriceAAPL *= (0.989 + randomFactor);
-                        } else {
-                            stockPriceAAPL *= (0.999 - randomFactor);
-                        }
-                        if (isIncrease3) {
-                            stockPriceGooG *= (0.96 + randomFactor);
-                        } else {
-                            stockPriceGooG *= (1.01 - randomFactor);
-                        }
-                        if (isIncrease3) {
-                            stockPriceTSLA *= (1.03 + randomFactor);
-                        } else {
-                            stockPriceTSLA *= (1.01 - randomFactor);
-                        }
-                        slowPrint(" $LLY: " + df.format(stockPriceLLY) + "\n");
-                        slowPrint(" $AAPL: " + df.format(stockPriceAAPL) + "\n");
-                        slowPrint(" $GooG: " + df.format(stockPriceGooG) + "\n");
-                        slowPrint(" $TSLA: " + df.format(stockPriceTSLA) + "\n");
+
+                    } else if (option.equals("2")) {
+                        buyOrSellStock();
+                    } else if (option.equals("3")) {
+                        Portfolio();
+                    } else {
+                        slowPrint("Invalid choice. Please try again.\n");
                     }
-
-                } else if (option.equals("2")) {
-                    buyOrSellStock();
-                } else if (option.equals("3")){
-                    Portfolio();
-                } else {
-                    slowPrint("Invalid choice. Please try again.\n");
                 }
+                Portfolio();
             }
-        }
-        Portfolio();
-
-        if (day == 6) {
-            slowPrint("You have reached day 6, the end of this simulator... Here is your final portfolio.\n");
-            Portfolio();
-            slowPrint("\" \n and here is the Total Balance including current stock price (to many decimal places):\" ");
-            slowPrint((String.valueOf( balance + stockPriceGooG*sharesOwnedGooG + stockPriceAAPL*sharesOwnedAAPL + stockPriceLLY*sharesOwnedLLY + stockPriceTSLA*sharesOwnedTSLA)));
-
-
-        }
-
+            if (day == 6) {
+                // end of the game
+                slowPrint("You have reached day 6, the end of this simulator... Here is your final portfolio.\n");
+                Portfolio();
+                slowPrint("\n and here is the Total Balance including current stock price (to many decimal places):\" ");
+                slowPrint((String.valueOf(balance + stockPriceGooG * sharesOwnedGooG + stockPriceAAPL * sharesOwnedAAPL + stockPriceLLY * sharesOwnedLLY + stockPriceTSLA * sharesOwnedTSLA)));
+                System.out.println("\n Do you want to play again? (yes/no): ");
+                playAgain = scanner5.nextLine();
+            }
+        } while (playAgain.equalsIgnoreCase("yes"));
+        // play again
     }
-
-
-
-
 
     public static void buyOrSellStock() {
         slowPrint("""
@@ -166,7 +166,7 @@ public class StockSimulator {
                 slowPrint("Invalid choice. Please try again.\n");
         }
     }
-
+// slow print for slower print
     public static void slowPrint(String output) {
         for (int i = 0; i < output.length(); i++) {
             char c = output.charAt(i);
@@ -177,7 +177,7 @@ public class StockSimulator {
             }
         }
     }
-
+// portfolio callable
     public static int Portfolio() {
         System.out.println("Portfolio Balance: $" + balance);
         if(isAAPL){
@@ -199,7 +199,7 @@ public class StockSimulator {
         return balance;
 
     }
-
+// all stored methods of calling stocks
     static class StockCallMethods {
 
         // call method for elililly
@@ -349,7 +349,7 @@ public class StockSimulator {
 
 
         }
-
+// call method for telsa
         public static void callTesla() {
             int CurrentBalance = balance;
 
